@@ -1,53 +1,73 @@
-# Strata UI
+# React + TypeScript + Vite
 
-Strata UI is a modular design system built with a focus on scalability, architectural clarity and long-term maintainability.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This project explores how a front-end design system can be structured as a foundation layer for distributed applications and modular environments.
+Currently, two official plugins are available:
 
-## Goals
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Establish a consistent visual language through design tokens
-- Provide reusable and predictable UI primitives
-- Enable scalable theming strategies
-- Promote separation of concerns and low coupling
-- Serve as a base for multi-application or micro-frontend environments
+## React Compiler
 
-## Core Concepts
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### 1. Design Tokens
-The system is built upon structured design tokens:
-- Colors (primitive and semantic)
-- Typography scale
-- Spacing scale
-- Border radius
-- Elevation
-- Motion
+## Expanding the ESLint configuration
 
-### 2. Architectural Structure
-The project follows a layered approach:
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- tokens
-- foundations
-- base components
-- composed components
-- utilities
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-Each layer has a single responsibility and clear dependency boundaries.
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-### 3. Theming
-Strata UI supports theming through semantic tokens, allowing flexible branding and dark/light mode strategies without breaking component contracts.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## Stack
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- React
-- TypeScript
-- CSS-in-JS / CSS Modules (to be defined)
-- Storybook (planned for documentation)
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Purpose
-
-This repository is not intended to be a visual playground, but a study and implementation of scalable front-end architecture through a structured design system.
-
----
-
-Work in progress.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
