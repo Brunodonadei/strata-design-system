@@ -1,0 +1,72 @@
+.button {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: var(--typography-fontWeight-semiBold);
+  font-size: var(--typography-fontSize-bodySm);
+  font-family: var(--typography-fontFamily-base);
+  letter-spacing: var(--typography-letterSpacing-wide);
+  line-height: var(--typography-lineHeight-default);
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-md);
+
+  transition:
+    background 150ms ease,
+    box-shadow 150ms ease,
+    transform 100ms ease;
+}
+
+.button.button--primary {
+  background: var(--action-primary);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-sm);
+}
+
+.button.button--primary:hover {
+  background: var(--action-primaryHover);
+  box-shadow: var(--shadow-md);
+}
+
+.button.button--primary:active {
+  background: var(--action-primaryActive);
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 3px;
+}
+
+.button.button--secondary {
+  background: var(--action-secondary);
+  color: var(--action-primary);
+}
+
+.button.button--secondary:hover {
+  background: var(--action-secondaryHover);
+}
+
+.button.button--secondary:active {
+  background: var(--action-secondaryActive);
+}
+
+.button.button--tertiary {
+  background: var(--action-tertiary);
+  color: var(--action-primary);
+}
+
+.button.button--tertiary:hover {
+  background: var(--action-tertiaryHover);
+}
+
+.button.button--tertiary:active {
+  background: var(--action-tertiaryActive);
+}

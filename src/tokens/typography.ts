@@ -1,6 +1,8 @@
 export const typography = {
-  fontFamily:
-    '-apple-system, system-ui, BlinkMacMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;',
+  fontFamily: {
+    base: "'Inter', -apple-system, sans-serif",
+    mono: "'JetBrains Mono', monospace",
+  },
 
   fontSize: {
     caption: "12px",
@@ -27,6 +29,7 @@ export const typography = {
   },
 
   lineHeight: {
+    default: 1,
     caption: 1.4,
     body: 1.6,
     heading: 1.2,
