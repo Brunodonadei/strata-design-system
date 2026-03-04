@@ -7,15 +7,14 @@
   justify-content: center;
 
   font-weight: var(--typography-fontWeight-semiBold);
-  font-size: var(--typography-fontSize-bodySm);
   font-family: var(--typography-fontFamily-base);
   letter-spacing: var(--typography-letterSpacing-wide);
   line-height: var(--typography-lineHeight-default);
   text-transform: uppercase;
   white-space: nowrap;
 
-  padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-md);
+  gap: var(--spacing-2);
 
   transition:
     background 150ms ease,
@@ -29,12 +28,12 @@
   box-shadow: var(--shadow-sm);
 }
 
-.button.button--primary:hover {
+.button.button--primary:not(:disabled):hover {
   background: var(--action-primaryHover);
   box-shadow: var(--shadow-md);
 }
 
-.button.button--primary:active {
+.button.button--primary:not(:disabled):active {
   background: var(--action-primaryActive);
   transform: translateY(1px);
   box-shadow: none;
@@ -50,11 +49,11 @@
   color: var(--action-primary);
 }
 
-.button.button--secondary:hover {
+.button.button--secondary:not(:disabled):hover {
   background: var(--action-secondaryHover);
 }
 
-.button.button--secondary:active {
+.button.button--secondary:not(:disabled):active {
   background: var(--action-secondaryActive);
 }
 
@@ -63,10 +62,32 @@
   color: var(--action-primary);
 }
 
-.button.button--tertiary:hover {
+.button.button--tertiary:not(:disabled):hover {
   background: var(--action-tertiaryHover);
 }
 
-.button.button--tertiary:active {
+.button.button--tertiary:not(:disabled):active {
   background: var(--action-tertiaryActive);
+}
+
+.button.button--sm {
+  font-size: var(--typography-fontSize-caption);
+  padding: var(--spacing-1) var(--spacing-3);
+}
+
+.button.button--md {
+  font-size: var(--typography-fontSize-bodySm);
+  padding: var(--spacing-2) var(--spacing-4);
+}
+
+.button.button--lg {
+  font-size: var(--typography-fontSize-body);
+  padding: var(--spacing-3) var(--spacing-6);
+}
+
+.button:disabled {
+  background: var(--state-disabled);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
 }
